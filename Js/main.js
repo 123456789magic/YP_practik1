@@ -263,7 +263,6 @@ Vue.component('product-tabs', {
        <div v-show="selectedTab === 'Shipping'">
             <p>{{ shipping }}</p>
         </div>
-            
         <div v-show="selectedTab === 'Details'">
             <ul>
                 <li v-for="detail in details">{{ detail }}</li>
@@ -292,7 +291,11 @@ let app = new Vue({
 
         },
         deleteCart(id) {
-            this.cart.pop(id);
+            for(let i = this.cart.length - 1; i >= 0; i--){
+                if (this.cart[i] === id){
+                    this.cart.splice(i, 1);
+                }
+            }
         }
     }
 })
